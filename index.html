@@ -1,74 +1,7 @@
 <!DOCTYPE html>
 <head>
-<title>ScriptWriter</title>
-<link rel="shortcut icon" type="image/x-icon" href="C:\Users\minej\OneDrive\Desktop\Code\scriptWriter.ico"/>
+<title>Projects | WooperIsBest.Github.io</title>
 </head>
 <body>
-  <div style="background-color:darkGrey; padding: 0.5% 0.5% 0.5% 0.5%">
-    <button id="save" onclick="download(document.getElementById('editor').innerText, 'script', 'html');">Save</button>
-    <span title="Coming Soon!"><button id="compile">Compile</button></span>
-    <input type="file" id="script" accept=".html, .js"></input>
-  </div>
-
-<pre id="editor" contenteditable="true" spellcheck="false" style="border: 1px solid black; min-height:525px; width: 99.75%; tab-size:4;
-font-size: 12pt; overflow:auto; padding-left: 0.5%"></pre>
-
-<script>
-var ctrl = false;
-
-document.addEventListener("keydown", function(e){
-	if(e.key == "Tab"){
-		e.preventDefault();
-		document.execCommand("insertHTML", true, "&Tab;");
-	}
-	if(e.key == "Control"){
-		ctrl = true;			
-	}
-	if(e.key == "s" && ctrl){
-		e.preventDefault();
-		download(document.getElementById('editor').innerText, 'script', 'html');
-	}
-});
-
-document.addEventListener("keyup", function(e){ 
-	if(e.key == "Control"){
-		ctrl = false; 
-	}
-});
-
-/* Download */
-function download(data, filename = "script", type = "txt") {
-    var file = new Blob([data], {type: type});
-    if (window.navigator.msSaveOrOpenBlob) // IE10+
-        window.navigator.msSaveOrOpenBlob(file, filename);
-    else { // Others
-        var a = document.createElement("a"),
-                url = URL.createObjectURL(file);
-        a.href = url;
-        a.download = filename + "." + type;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(function() {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);  
-        }, 0); 
-    }
-}
-
-/* Upload */
-document.getElementById("script").onchange = function () {
-	var fileName = this.value.replace('C:\\fakepath\\', '');
-	var output = document.getElementById('editor');
-	if(!(fileName.slice(-5) == ".html" || fileName.slice(-3) == ".js")){
-		alert("Warning: Unrecognized file type. Syntax highlighting will not be used.");
-	}
-	var reader = new FileReader();
-	reader.readAsText(this.files[0]);
-	output.innerText = this.files.length + " file selected";
-	reader.onload = function(event) {
-		var contents = event.target.result;
-		output.innerText = contents;
-	}
-}
-</script>
+	<h1>WooperIsBest.Github.io</h1>
 </body>
