@@ -19,5 +19,7 @@ body {
   left: 0;
   box-shadow: 0 5px 10px black;
   font-family: Consolas;
-  font-size: 3vw;
+  display: inline-flex;
+  vertical-align: top;
+  padding-top: 8px;
 }
