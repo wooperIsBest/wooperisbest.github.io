@@ -6,10 +6,13 @@ body {
   border: 2px solid black;
   padding: 1% 1% 1% 1%;
   background-color: #59c2e1;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
 }
 
 .container:hover {
-    background-color: #4ca8c1;
+    background-color: #40d3ff;
     -webkit-transition: background-color 1000ms linear;
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
