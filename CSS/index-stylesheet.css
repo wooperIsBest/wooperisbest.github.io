@@ -22,4 +22,5 @@ body {
   display: inline-flex;
   vertical-align: top;
   padding-top: 8px;
+  text-decoration: none;
 }
