@@ -3,17 +3,21 @@ body {
 }
 
 .container {
-  border: 2px solid black;
+  border-radius: 20px;
   padding: 1% 1% 1% 1%;
   background-color: #59c2e1;
-  -webkit-transition: background-color 1000ms linear;
-  -ms-transition: background-color 1000ms linear;
-  transition: background-color 1000ms linear;
 }
 
 .container:hover {
-    background-color: #40d3ff;
-    -webkit-transition: background-color 1000ms linear;
-    -ms-transition: background-color 1000ms linear;
-    transition: background-color 1000ms linear;
+    background-color: #00bff7;
+    -webkit-transition: background-color 750ms linear;
+    -ms-transition: background-color 750ms linear;
+    transition: background-color 750ms linear;
+}
+
+.container:not:hover {
+  background-color: #59c2e1;
+  -webkit-transition: background-color 750ms linear;
+  -ms-transition: background-color 750ms linear;
+  transition: background-color 750ms linear;
 }
