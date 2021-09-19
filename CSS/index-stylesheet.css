@@ -2,10 +2,15 @@ body {
   background-color:#b7fefb;
 }
 
-.container {
+#cc-container {
   border-radius: 20px;
   padding: 1%;
   background-color: #59c2e1;
+  width: 50%;
+  text-align:center;
+  position: absolute;
+  bottom: 10px; 
+  left: 25%;
 }
 
 #banner {
