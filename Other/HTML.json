@@ -1,0 +1,17 @@
+{
+	"html" : {
+		"attributes" : {
+			"style" : "color: green; background-color:black;",
+			"contenteditable" : "true"
+		},
+		"childElements" : {
+			"head" : {
+				"content" : ""
+			},
+			"div" : {
+				"content" : "My name is bob!",
+				"style" : "font-weight: bold"
+			}
+		}
+	}
+}
