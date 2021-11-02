@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chess | WooperIsBest.GitHub.io</title>
+    <link rel="icon" href="/Resources/Images/favicon.ico" type="image/x-icon">
+    
+	  <link rel="preload" href="/CSS/index-stylesheet.css" as="style">
+	  <link rel="stylesheet" href="/CSS/index-stylesheet.css">
+    
+    <link rel="preload" href="/CSS/game-stylesheet.css" as="style">
+	  <link rel="stylesheet" href="/CSS/game-stylesheet.css">
+    
+    <script src="/js/chess.js"></script>
+  </head>
+  <body>
+		<div id="img-container" style="display:none">
+			<img id="WhitePawn" src="Resources/Images/WhitePawn.png">
+			<img id="BlackPawn" src="Resources/Images/BlackPawn.png">
+			<img id="WhiteCastle" src="Resources/Images/WhiteCastle.png">
+			<img id="BlackCastle" src="Resources/Images/BlackCastle.png">
+			<img id="WhiteBishop" src="Resources/Images/WhiteBishop.png">
+			<img id="BlackBishop" src="Resources/Images/BlackBishop.png">
+			<img id="WhiteHorse" src="Resources/Images/WhiteHorse.png">
+			<img id="BlackHorse" src="Resources/Images/BlackHorse.png">
+			<img id="WhiteQueen" src="Resources/Images/WhiteQueen.png">
+			<img id="BlackQueen" src="Resources/Images/BlackQueen.png">
+			<img id="WhiteKing" src="Resources/Images/WhiteKing.png">
+			<img id="BlackKing" src="Resources/Images/BlackKing.png">
+		</div>
+		<!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--GAME-->
+		<div id="game-container">
+			<canvas id="game" width="1000px" height="1000px">The HTML5 Canvas is not supported in your browser.</canvas>
+			<div id="board">
+				<div id="history">
+					<table>
+						<tbody>
+							<tr id="0" data-history='{"A8":"BlackCastle","B8":"BlackHorse","C8":"BlackBishop","D8":"BlackKing","E8":"BlackQueen","F8":"BlackBishop","G8":"BlackHorse","H8":"BlackCastle","A7":"BlackPawn","B7":"BlackPawn","C7":"BlackPawn","D7":"BlackPawn","E7":"BlackPawn","F7":"BlackPawn","G7":"BlackPawn","H7":"BlackPawn","A6":null,"B6":null,"C6":null,"D6":null,"E6":null,"F6":null,"G6":null,"H6":null,"A5":null,"B5":null,"C5":null,"D5":null,"E5":null,"F5":null,"G5":null,"H5":null,"A4":null,"B4":null,"C4":null,"D4":null,"E4":null,"F4":null,"G4":null,"H4":null,"A3":null,"B3":null,"C3":null,"D3":null,"E3":null,"F3":null,"G3":null,"H3":null,"A2":"WhitePawn","B2":"WhitePawn","C2":"WhitePawn","D2":"WhitePawn","E2":"WhitePawn","F2":"WhitePawn","G2":"WhitePawn","H2":"WhitePawn","A1":"WhiteCastle","B1":"WhiteHorse","C1":"WhiteBishop","D1":"WhiteKing","E1":"WhiteQueen","F1":"WhiteBishop","G1":"WhiteHorse","H1":"WhiteCastle","turn":"White"}' onclick="restore(this);"><td>Beginning</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="next-move">
+					<input id="input-1" maxlength="2"></input><div> To </div><input id="input-2" maxlength="2"></input><input type="button" value="Submit" onclick="validateInput();"></input>
+				</div>
+			</div>
+		</div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
