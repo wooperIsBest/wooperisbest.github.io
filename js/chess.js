@@ -356,7 +356,7 @@ function validateInput(){
 
   var tbody = document.getElementById("history").firstElementChild.firstElementChild;
   tbody.innerHTML += "<tr id=\"" + (+tbody.lastElementChild.id + 1) + "\"" +
-    "data-history='" + JSON.stringify(pieces) + "' onclick=\"restore(this);\"><td><img src=\"" + img + ".png\"/>" + from + " to " + to + "</td></tr>";
+    "data-history='" + JSON.stringify(pieces) + "' onclick=\"restore(this);\"><td><img src=\"../Resources/Images/" + img + ".png\"/>" + from + " to " + to + "</td></tr>";
 
   document.getElementById("input-1").focus();
 
