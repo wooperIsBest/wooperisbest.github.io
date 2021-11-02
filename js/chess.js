@@ -442,7 +442,7 @@ function isCrossing(rowFrom, colFrom, rowTo, colTo, mode){
       }
     }else if(rowFrom > rowTo && colFromNum > colToNum){
       //alert("DownLeft");
-      for(var i = rowFrom; i > rowTo; i--){
+      for(var i = rowFrom; i > rowTo + 1; i--){
         //alert((cols[+colFromNum + colIternate - 2]) + (+i - 1) + ", " + pieces[(cols[+colFromNum + colIternate - 2]) + (+i - 1)]);
         if(pieces[(cols[+colFromNum + colIternate - 2]) + (+i - 1)] != null){
           return true;
