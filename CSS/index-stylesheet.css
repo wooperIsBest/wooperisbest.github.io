@@ -63,3 +63,7 @@ hr {
 #center a:hover {
 	background-color: #74ddfc;
 }
+
+abbr {
+	text-decoration: none;
+}
