@@ -1,79 +1,80 @@
 html {
-				height: 100%;
-			}
-			body {
-				height: 97%;
-			}
-			canvas {
-				width: 40vw;
-				height: 40vw;
-				border: 5px solid black;
-				margin-left: 30%;
-				margin-top: 80px;
-				margin-bottom: 5vw;
-				border-radius: 15px;
-			}
-			#cc-container {
-				position: relative !important;
-				margin-left: 20%;
-				left: 0;
-			}
-			#board {
-				width: 20%;
-				height: 38vw;
-				border: 5px solid black;
-				margin-left: 1%;
-				margin-top: 80px;
-				margin-bottom: 5vw;
-				border-radius: 15px;
-				display: inline;
-				padding: 1%;
-				background-color: #303030;
-				position: relative;
-			}
-			#game-container {
-				display: flex;
-				height: 50vw;
-			}
-			#history {
-				color: black;
-				width: 100%;
-				height: 95%;
-				overflow: auto;
-			}
-			input {
-				width: 20%;
-				text-align: center;
-			}
-			table {
-				width: 100%;
-			}
-			tr {
-				background-color: white;
-				height: 25px;
-				cursor: pointer;
-			}
-			td	{
-				color: black;
-				padding: 10px;
-			}
-			#next-move {
-				position: absolute;
-				bottom: 1%;
-				height: 5%;
-				display: flex;
-				color: white;
-				width: 100%;
-			}
-			#next-move div {
-				margin: 2%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			#input-2 {
-				margin-right: 4%;
-			}
-			td img {
-				height: 15px;
-			}
+	height: 100%;
+}
+body {
+	height: 97%;
+}
+canvas {
+	width: 40vw;
+	height: 40vw;
+	border: 5px solid black;
+	margin-left: 30%;
+	margin-top: 80px;
+	margin-bottom: 5vw;
+	border-radius: 15px;
+}
+#cc-container {
+	position: relative !important;
+	margin-left: 20%;
+	left: 0;
+}
+#board {
+	width: 20%;
+	height: 38vw;
+	border: 5px solid black;
+	margin-left: 1%;
+	margin-top: 80px;
+	margin-bottom: 5vw;
+	border-radius: 15px;
+	display: inline;
+	padding: 1%;
+	background-color: #303030;
+	position: relative;
+	color: white;
+}
+#game-container {
+	display: flex;
+	height: 50vw;
+}
+#history {
+	color: black;
+	width: 100%;
+	height: 95%;
+	overflow: auto;
+}
+input {
+	width: 20%;
+	text-align: center;
+}
+table {
+	width: 100%;
+}
+tr {
+	background-color: white;
+	height: 25px;
+	cursor: pointer;
+}
+td	{
+	color: black;
+	padding: 10px;
+}
+#next-move {
+	position: absolute;
+	bottom: 1%;
+	height: 5%;
+	display: flex;
+	color: white;
+	width: 100%;
+}
+#next-move div {
+	margin: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#input-2 {
+	margin-right: 4%;
+}
+td img {
+	height: 15px;
+}
