@@ -1,5 +1,18 @@
 window.onload = draw;
 
+var mouseX;
+var mouseY;
+
+const MouseOnCanvas = {
+	init : function(canvas){
+		this.cbounds = canvas.getBoundingClientRect();
+	},
+	updateMouseValues : function(e){
+		mouseX = Math.round((e.clientX - this.cbounds.left) * (c.width / Math.round(this.cbounds.right - this.cbounds.left)));
+		mouseY = Math.round((e.clientY - this.cbounds.top) * (c.height / Math.round(this.cbounds.bottom - this.cbounds.top)));
+	}
+}
+
 var pieces = {
 	"A8" : "BlackCastle", "B8" : "BlackHorse", "C8" : "BlackBishop", "D8" : "BlackKing", "E8" : "BlackQueen", "F8" : "BlackBishop", "G8" : "BlackHorse", "H8" : "BlackCastle",
 	"A7" : "BlackPawn", "B7" : "BlackPawn", "C7" : "BlackPawn", "D7" : "BlackPawn", "E7" : "BlackPawn", "F7" : "BlackPawn", "G7" : "BlackPawn", "H7" : "BlackPawn",
