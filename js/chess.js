@@ -373,12 +373,12 @@ function validateInput(mouse = false){
 	redHighlights = [];
 	orangeHighlights = [];
 	if(mouse){
-		var img = mousePieceType;
+		var img = "/Resources/Images/" + mousePieceType;
 		pieces[to] = mousePieceType;
 		mousePieceType = null;
 		mouseFrom = null;
 	}else{
-		var img = pieces[from];
+		var img = "/Resources/Images/" + pieces[from];
 		pieces[to] = pieces[from];
 		pieces[from] = null;
 	}
