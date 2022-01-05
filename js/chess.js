@@ -447,7 +447,6 @@ function isCrossing(rowFrom, colFrom, rowTo, colTo, mode){
 		var colToNum = cols.indexOf(colTo) + 1;
 		if(colFromNum < colToNum){
 			for(var i = colFromNum; i < colToNum - 1; i++){
-				alert(i + ", " + (cols[i] + rowFrom) + ", " + pieces[cols[i] + rowFrom]);
 				if(pieces[cols[i] + rowFrom] != null){
 					return true;
 				}
