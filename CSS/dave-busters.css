@@ -1,8 +1,34 @@
+body {
+	background-image: linear-gradient(to right, purple, gray);
+	color:white;
+	font-family:Consolas;
+}
+h1 {
+	margin:0;
+	font-size: 50px;
+}
+img {
+	height: 100px;
+}
 canvas {
 	border: 1px solid black;
 	width: 35vw;
-	margin-left: 32.5vw;
 }
-#img-container {
+div {
 	display: none;
+}
+td img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+th {
+	font-size: 20px;
+}
+body {
+	text-align: center;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
 }
