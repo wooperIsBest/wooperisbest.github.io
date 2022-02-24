@@ -1,0 +1,8 @@
+canvas {
+	border: 1px solid black;
+	width: 35vw;
+	margin-left: 32.5vw;
+}
+#img-container {
+	display: none;
+}
