@@ -210,6 +210,7 @@ function draw(){
 			ctx.fillText("Left and Right / A and D to flip gravity", 500, 400);
 			ctx.fillText("Space to shoot", 500, 450);
 			ctx.fillText("Q and E to switch bullets", 500, 500);
+			ctx.fillText("F11 to enter and exit fullscreen", 500, 550);
 			break;
 		case "Play":
 			//Stars
