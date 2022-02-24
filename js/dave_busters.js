@@ -521,10 +521,12 @@ function draw(){
 }
 
 document.addEventListener("keydown", function(e){
+	if(e.key == " " || e.key == "ArrowUp" || e.key == "ArrowDown"){
+		e.preventDefault();	
+	}
 	sounds.Music.play();
 	if(mode == "StartMenu"){
 		if(e.key == " "){
-			e.preventDefault();
 			if(selected == 0){
 				mode = "Play";
 				playSound("Oh look its playing");
