@@ -211,6 +211,7 @@ function draw(){
 			ctx.fillText("Space to shoot", 500, 450);
 			ctx.fillText("Q and E to switch bullets", 500, 500);
 			ctx.fillText("F11 to enter and exit fullscreen", 500, 550);
+			ctx.fillText("(Press space to exit)", 500, 850);
 			break;
 		case "Play":
 			//Stars
