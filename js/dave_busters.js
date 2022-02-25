@@ -591,7 +591,7 @@ function draw(){
 
 document.addEventListener("keydown", function(e){
 	sounds.Music.play();
-	if(e.key == " " || e.key == "ArrowUp" || e.key == "ArrowLeft"){
+	if(e.key == " " || e.key == "ArrowUp" || e.key == "ArrowDown"){
 		e.preventDefault();	
 	}
 	if(mode == "StartMenu"){
