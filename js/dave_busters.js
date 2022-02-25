@@ -280,7 +280,7 @@ function draw(){
 			}
 			ctx.drawImage(images["Spaceship" + player.frame], player.x - 78, player.y - 25);
 			
-			if(score >= 10000){
+			if(score >= 10000 && level < 4){
 				player.levelEndAnim = true;
 				for(var i = 0; i < enemies.length; i++){
 					effects.push({"x" : enemies[i].x, "y" : enemies[i].y + 60, "type" : "explode", "size" : 100});
