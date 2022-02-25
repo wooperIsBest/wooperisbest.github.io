@@ -591,9 +591,11 @@ function draw(){
 
 document.addEventListener("keydown", function(e){
 	sounds.Music.play();
+	if(e.key == " " || e.key == "ArrowUp" || e.key == "ArrowLeft"){
+		e.preventDefault();	
+	}
 	if(mode == "StartMenu"){
 		if(e.key == " "){
-			e.preventDefault();
 			if(selected == 0){
 				mode = "Play";
 				playSound("Oh look its playing");
@@ -603,7 +605,6 @@ document.addEventListener("keydown", function(e){
 			draw();
 		}
 		if(e.key == "ArrowRight" || e.key == "ArrowDown"){
-			e.preventDefault();
 			selected++;
 			if(selected > 1){
 				selected = 0;
@@ -611,7 +612,6 @@ document.addEventListener("keydown", function(e){
 			draw();
 		}
 		if(e.key == "ArrowLeft" || e.key == "ArrowUp"){
-			e.preventDefault();
 			selected--;
 			if(selected < 0){
 				selected = 1;
@@ -620,7 +620,6 @@ document.addEventListener("keydown", function(e){
 		}
 	}else if(mode == "Info"){
 		if(e.key == " "){
-			e.preventDefault();
 			mode = "StartMenu";
 			draw();
 		}
