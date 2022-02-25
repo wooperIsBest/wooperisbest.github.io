@@ -15,12 +15,13 @@ const images = {
 	"Continent1" : document.getElementById("Continent_1"),
 	"Continent2" : document.getElementById("Continent_2"),
 	"Continent3" : document.getElementById("Continent_3"),
-	"Continent4" : document.getElementById("Continent_4")
+	"Continent4" : document.getElementById("Continent_4"),
+	"Dastardly Dave" : document.getElementById("Dastardly Dave")
 }
 const sounds = {
 	"Pew" : document.getElementById("Pew"),
 	"Boom" : document.getElementById("Boom"),
-	"Dastardly Dave" : document.getElementById("Dastardly Dave"),
+	"Dastardly Dave" : document.getElementById("Dastardly Dave Noise"),
 	"Dave Hey that Hurt" : document.getElementById("Dave Hey that Hurt"),
 	"Dave Ow" : document.getElementById("Dave Ow"),
 	"Dodo Dave Noise" : document.getElementById("Dodo Dave Noise"),
@@ -94,14 +95,21 @@ const enemyData = {
 				"Dodo Dave"
 			],
 			"spawnRange" : 160
+		},
+		"4" : {
+			"enemies" : [
+				"Dave",
+				"Dodo Dave"
+			],
+			"spawnRange" : 400
 		}
 	},
 	"Dave" : {
 		"health" : 1,
 		"speed" : 5,
 		"sounds" : [
-			"Dave Hey that Hurt",
-			"Dave Ow"
+			"Dave Ow",
+			"Dave Hey that Hurt"
 		]
 	},
 	"Asteroid" : {
@@ -116,6 +124,14 @@ const enemyData = {
 		"speed" : 8,
 		"sounds" : [
 			"Dodo Dave Noise"
+		]
+	},
+	"Dastardly Dave" : {
+		"health" : 50,
+		"speed" : 0.1,
+		"sounds" : [
+			"Dave Ow",
+			"Dave Hey that Hurt"
 		]
 	}
 }
@@ -210,8 +226,6 @@ function draw(){
 			ctx.fillText("Left and Right / A and D to flip gravity", 500, 400);
 			ctx.fillText("Space to shoot", 500, 450);
 			ctx.fillText("Q and E to switch bullets", 500, 500);
-			ctx.fillText("F11 to enter and exit fullscreen", 500, 550);
-			ctx.fillText("(Press space to exit)", 500, 850);
 			break;
 		case "Play":
 			//Stars
@@ -244,9 +258,12 @@ function draw(){
 						}
 					}
 					break;
+				case 4:
+					ctx.fillStyle = "#222222";
+					ctx.fillRect(0, 0, 1000, 1000);
 			}
 			
-			if(level > 3){
+			if(level > 4){
 				ctx.font = "150pt Consolas";
 				ctx.fillStyle = "white";
 				ctx.textAlign = "center";
@@ -302,6 +319,11 @@ function draw(){
 						bulletData[item].amount = bulletData[item].startingAmount;
 					}
 					mode = "Play";
+					if(level == 4){
+						enemies.push({"x" : 300, "y" : 30, "type" : "Dastardly Dave", "health" : enemyData["Dastardly Dave"].health});
+						enemyCooldown = 0;
+						playSound("Dastardly Dave");
+					}
 					window.requestAnimationFrame(draw);
 					return;
 				}
@@ -358,8 +380,21 @@ function draw(){
 				timeUntilEnemy = Math.random() * enemyData.levels[level.toString()].spawnRange + 25;
 			}
 			for(var i = 0; i < enemies.length; i++){
-				ctx.drawImage(images[enemies[i].type], enemies[i].x - 52.4, enemies[i].y, 104.8, 140);
+				ctx.drawImage(images[enemies[i].type], enemies[i].x - (enemies[i].type == "Dastardly Dave" ? 150 : 52.4), enemies[i].y, (enemies[i].type == "Dastardly Dave" ? 300 : 104.8), (enemies[i].type == "Dastardly Dave" ? 400 : 140));
 				enemies[i].y += enemyData[enemies[i].type].speed;
+				if(enemies[i].type == "Dastardly Dave"){
+					if(enemies[i].flipDirection){
+						enemies[i].x += 2;
+						if(enemies[i].x > 900){
+							enemies[i].flipDirection = false;
+						}
+					}else{
+						enemies[i].x -= 2;
+						if(enemies[i].x < 100){
+							enemies[i].flipDirection = true;
+						}
+					}
+				}
 				if(enemies[i].y > 1000){
 					player.health--;
 					if(enemies[i].type == "Dodo Dave"){
@@ -372,16 +407,20 @@ function draw(){
 					player.y - 25 <= enemies[i].y + 70 &&
 					player.y + 25 >= enemies[i].y - 70
 					){
-					enemies.splice(i, 1);
-					player.health -= 5;
+					if(enemies[i].type == "Dastardly Dave"){
+						player.health = 0;
+					}else{
+						player.health -= 5;
+						enemies.splice(i, 1);
+					}
 				}else{
 					for(var j = 0; j < bullets.length; j++){
 						if(enemies[i] && bullets[j]){
 							if(
-								bullets[j].x + 30 >= enemies[i].x - 52.4 && //Bullet Right greater than enemy left
-								bullets[j].x - 30 <= enemies[i].x + 52.4 && //Bullet Left less than enemy right
-								bullets[j].y - 37.5 <= enemies[i].y + 70 && //Bullet Top less than enemy bottom
-								bullets[j].y + 37.5 >= enemies[i].y - 70 	//Bullet Bottom greater than enemy top
+								bullets[j].x + 30 >= enemies[i].x - (enemies[i].type == "Dastardly Dave" ? 150 : 52.4) && //Bullet Right greater than enemy left
+								bullets[j].x - 30 <= enemies[i].x + (enemies[i].type == "Dastardly Dave" ? 150 : 52.4) && //Bullet Left less than enemy right
+								bullets[j].y - 37.5 <= enemies[i].y + (enemies[i].type == "Dastardly Dave" ? 200 : 70) && //Bullet Top less than enemy bottom
+								bullets[j].y + 37.5 >= enemies[i].y - (enemies[i].type == "Dastardly Dave" ? 200 : 70) 	//Bullet Bottom greater than enemy top
 								){
 								enemies[i].health -= bulletData[bullets[j].type].damage;
 								if(bullets[j].type == "GreenBullet"){
@@ -396,6 +435,9 @@ function draw(){
 										}else{
 											playSound(enemyData[enemies[i].type].sounds[0]);
 										}
+									}
+									if(enemies[i].type == "Dastardly Dave"){
+										effects.push({"x" : enemies[i].x, "y" : enemies[i].y + 120, "type" : "finalExplosion", "size" : 10});
 									}
 									enemies.splice(i, 1);
 								}else{
@@ -470,10 +512,35 @@ function draw(){
 						for(var j = 0; j < enemies.length; j++){
 							if(enemies[j] && effects[i]){
 								let distance = Math.sqrt((Math.abs(effects[i].x - enemies[j].x) * Math.abs(effects[i].x - enemies[j].x)) + (Math.abs(effects[i].y - enemies[j].y) * Math.abs(effects[i].y - enemies[j].y)))
-								if(distance <= effects[i].size){
-									enemies.splice(j, 1);
+								if(distance <= effects[i].size && enemies[j].type != "Dastardly Dave"){
+									enemies[j].health -= 5;
+									if(enemies[j].health <= 0){
+										enemies.splice(j, 1);
+									}
 								}
 							}
+						}
+						break;
+					case "finalExplosion":
+						ctx.beginPath();
+						ctx.fillStyle = "#343aeb";
+						ctx.arc(effects[i].x, effects[i].y, effects[i].size, 0, 2 * Math.PI);
+						ctx.fill();
+						ctx.closePath();
+						ctx.beginPath();
+						ctx.fillStyle = "#348feb";
+						ctx.arc(effects[i].x, effects[i].y, effects[i].size * 0.75, 0, 2 * Math.PI);
+						ctx.fill();
+						ctx.closePath();
+						ctx.beginPath();
+						ctx.fillStyle = "#34e2eb";
+						ctx.arc(effects[i].x, effects[i].y, effects[i].size * 0.5, 0, 2 * Math.PI);
+						ctx.fill();
+						ctx.closePath();
+						effects[i].size += 5;
+						enemies = [];
+						if(effects[i].size > 500){
+							level++;
 						}
 						break;
 				}
@@ -523,12 +590,10 @@ function draw(){
 }
 
 document.addEventListener("keydown", function(e){
-	if(e.key == " " || e.key == "ArrowUp" || e.key == "ArrowDown"){
-		e.preventDefault();	
-	}
 	sounds.Music.play();
 	if(mode == "StartMenu"){
 		if(e.key == " "){
+			e.preventDefault();
 			if(selected == 0){
 				mode = "Play";
 				playSound("Oh look its playing");
