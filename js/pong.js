@@ -61,8 +61,11 @@ function draw(){
 
   ctx.fillRect(950, player2Y, 20, 100);
 
-  if((ballX >= 945 && (ballY < player2Y + 100 && ballY > player2Y)) || (ballX <= 55 && (ballY < player1Y + 100 && ballY > player1Y))){
-    velX *= -1;
+  if((ballX >= 945 && (ballY < player2Y + 100 && ballY > player2Y))){
+    velX = -Math.abs(velX);
+  }
+  if((ballX <= 55 && (ballY < player1Y + 100 && ballY > player1Y))){
+    velX = Math.abs(velX); 
   }
   if(ballX >= 990){
     p1score++;
