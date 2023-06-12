@@ -87,6 +87,7 @@ class LineSegment {
         ){
             return {"x" : x, "y" : y}
         }
+    }
 }
 
 var objects = [];
