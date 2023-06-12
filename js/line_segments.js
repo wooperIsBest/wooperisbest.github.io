@@ -79,7 +79,11 @@ class LineSegment {
             ((x >= line1.point1.x && x <= line1.point2.x) ||
             (x <= line1.point1.x && x >= line1.point2.x)) && 
             ((x > line2.point1.x && x <= line2.point2.x) ||
-            (x <= line2.point1.x && x >= line2.point2.x))
+            (x <= line2.point1.x && x >= line2.point2.x)) &&
+            ((y >= line1.point1.y && y <= line1.point2.y) ||
+            (y <= line1.point1.y && y >= line1.point2.y)) && 
+            ((y > line2.point1.y && y <= line2.point2.y) ||
+            (y <= line2.point1.y && y >= line2.point2.y))
         ){
             return {"x" : x, "y" : y}
         }
