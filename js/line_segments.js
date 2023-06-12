@@ -66,16 +66,23 @@ class LineSegment {
         //Solving Systems of Equations
         var x = (intercept2 - intercept1) / (slope1 - slope2);
         var y = slope1 * x + intercept1;
+        if(Math.abs(slope1) == Infinity){
+            x = line1.point1.x;
+            y = slope2 * x + intercept2;
+        }
+        if(Math.abs(slope2) == Infinity){
+            x = line2.point1.x;
+            y = slope1 * x + intercept1;
+        }
 
         if(
-            ((x > line1.point1.x && x < line1.point2.x) ||
-            (x < line1.point1.x && x > line1.point2.x)) && 
-            ((x > line2.point1.x && x < line2.point2.x) ||
-            (x < line2.point1.x && x > line2.point2.x))
+            ((x >= line1.point1.x && x <= line1.point2.x) ||
+            (x <= line1.point1.x && x >= line1.point2.x)) && 
+            ((x > line2.point1.x && x <= line2.point2.x) ||
+            (x <= line2.point1.x && x >= line2.point2.x))
         ){
             return {"x" : x, "y" : y}
         }
-    }
 }
 
 var objects = [];
