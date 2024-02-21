@@ -76,7 +76,7 @@ hr {
 	cursor: pointer;
 }
 
-abbr, a {
+abbr {
 	color: black;
 	text-decoration: none;
 }
