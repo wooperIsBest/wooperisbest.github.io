@@ -291,16 +291,6 @@ function draw(){
 		ctx.fillRect(0, 0, 1000, 1000);
 	}
 
-	if(cic.getKeyDown("F11")){
-		if (c.requestFullscreen) {
-			c.requestFullscreen();
-		} else if (c.webkitRequestFullscreen) {
-			c.webkitRequestFullscreen();
-		} else if (c.msRequestFullscreen) {
-			c.msRequestFullscreen();
-		}
-	}
-	
 	room.frame++;
 	cic.onFrameUpdate();
 	//window.setTimeout(draw, 100);
