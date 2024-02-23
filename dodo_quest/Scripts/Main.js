@@ -290,6 +290,16 @@ function draw(){
 		ctx.fillStyle = "rgba(0, 0, 0, " + (settings.fadeTime - room.frame) / settings.fadeTime + ")";
 		ctx.fillRect(0, 0, 1000, 1000);
 	}
+
+	if(cic.getKeyDown("F11")){
+		if (c.requestFullscreen) {
+			c.requestFullscreen();
+		} else if (c.webkitRequestFullscreen) {
+			c.webkitRequestFullscreen();
+		} else if (c.msRequestFullscreen) {
+			c.msRequestFullscreen();
+		}
+	}
 	
 	room.frame++;
 	cic.onFrameUpdate();
