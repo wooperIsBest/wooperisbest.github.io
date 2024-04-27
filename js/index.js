@@ -47,8 +47,8 @@ function buildTable(){
 				source.append(link);
 
 				let img = document.createElement("img");
-				img.src = "images/GitHub.png";
-				img.title = "View source code on Github";
+				img.src = "/resources/images/GitHub.png";
+				img.title = "View source code on GitHub";
 				img.width = 20;
 				link.append(img);
 			}else{
