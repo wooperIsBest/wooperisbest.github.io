@@ -1,0 +1,57 @@
+.content {
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    margin: 20px 5% 20px;
+    padding: 30px;
+}
+.content a {
+    color: black;
+}
+.spacer {
+    margin: 80px;
+}
+.center {
+	text-align: center;
+}
+.header {
+    font-weight: bold;
+    font-size: 30pt;
+    font-family: Consolas;
+}
+.projects {
+    font-size: 15pt;
+    font-family: Consolas;
+}
+.projects table {
+	width: 100%;
+	border: 1px solid black;
+	overflow: hidden;
+	max-width: 100%;
+	table-layout: fixed;
+}
+.projects th {
+	background-color: #59c2e1;
+	padding: 7px 0;
+	border: 1px solid black;
+	overflow:hidden;
+}
+.projects td {
+	border: 1px solid black;
+	padding: 3px 0;
+	overflow: hidden;
+}
+.projects tr {
+	background-color: #b7fefb;
+}
+.projects tr:hover {
+	background-color: white;
+}
+#cc-container {
+    position: relative;
+    margin-left: 20%;
+    left: 0;
+}
+img {
+	vertical-align: text-top;
+}
