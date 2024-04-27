@@ -25,7 +25,7 @@ function buildTable(){
 			row.append(language);
 
 				let img = document.createElement("img");
-				img.src = "images/" + project.type + ".png";
+				img.src = "/resources/images/" + project.type + ".png";
 				img.title = "Made in " + project.type;
 				img.width = 20;
 				language.append(img);
@@ -35,7 +35,7 @@ function buildTable(){
 			row.append(site);
 			
 				let link = document.createElement("a");
-				link.href = "./projects/" + project.site;
+				link.href = "/projects/" + project.site;
 				link.innerText = project.siteType;
 				site.append(link);
 
