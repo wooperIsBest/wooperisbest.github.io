@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas Mouse Detection | WooperIsBest.GitHub.io</title>
+		<link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+
+		<link rel="stylesheet" href="/css/index-stylesheet.css">
+		<link rel="stylesheet" href="/css/game-stylesheet.css">
+
+		<script src="/js/canvas_mouse.js" defer></script>
+	</head>
+	<body>
+        <!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--GAME-->
+		<div id="game-container">
+			<canvas id="game" width="1000px" height="1000px">The HTML5 Canvas is not supported in your browser.</canvas>
+			<div id="board" class="center">
+				Mess around with these values. You will see the canvas change, but mouse position detection should still function properly!<br><br>
+				Canvas Pixels Width: <input type="number" value="1000" onchange="c.width = this.value;"></input><br>
+				Canvas Pixels Height: <input type="number" value="1000" onchange="c.height = this.value;"></input><br>
+				Canvas Style Width (vw): <input type="number" value="40" onchange="c.style.width = this.value + 'vw';"></input><br>
+				Canvas Style Height (vw): <input type="number" value="40" onchange="c.style.height = this.value + 'vw';"></input><br>
+			</div>
+		</div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
+    </body>
+</html>
