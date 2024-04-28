@@ -1,5 +1,5 @@
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			
+
 window.onload = buildTable;
 
 function buildTable(){
@@ -25,7 +25,7 @@ function buildTable(){
 			row.append(language);
 
 				let img = document.createElement("img");
-				img.src = "/resources/images/" + project.type + ".png";
+				img.src = "./resources/images/index/" + project.type + ".png";
 				img.title = "Made in " + project.type;
 				img.width = 20;
 				language.append(img);
@@ -35,7 +35,7 @@ function buildTable(){
 			row.append(site);
 			
 				let link = document.createElement("a");
-				link.href = "/projects/" + project.site;
+				link.href = "./projects/" + project.site;
 				link.innerText = project.siteType;
 				site.append(link);
 
@@ -47,7 +47,7 @@ function buildTable(){
 				source.append(link);
 
 				let img = document.createElement("img");
-				img.src = "/resources/images/GitHub.png";
+				img.src = "./resources/images/index/GitHub.png";
 				img.title = "View source code on GitHub";
 				img.width = 20;
 				link.append(img);

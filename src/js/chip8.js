@@ -11,7 +11,7 @@ const screenSize = 15;
 c.width = screenWidth * screenSize;
 c.height = screenHeight * screenSize;
 
-const fontAddress = "https://raw.githubusercontent.com/wooperIsBest/wooperisbest.github.io/main/Other/chip8-font.txt";
+const fontAddress = "https://raw.githubusercontent.com/wooperIsBest/wooperisbest.github.io/main/resources/other/chip8-font.txt";
 const resources = {
 	"font" : [],
 	"instructions" : []

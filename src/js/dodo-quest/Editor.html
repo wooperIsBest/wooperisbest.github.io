@@ -1,0 +1,476 @@
+<html>
+	<body style="text-align: center">
+		<canvas id="game" style="border:1px solid black; max-width: 100%" width="2020" height="1000"></canvas>
+	</body>
+	<script src="../CanvasInteractionClient.js"></script>
+	<script>
+		const c = document.getElementById("game");
+		const ctx = c.getContext("2d");
+		const cic = new CanvasInteractionClient(c);
+
+		ctx.imageSmoothingEnabled = false;
+		ctx.mozImageSmoothingEnabled = false;
+		ctx.webkitImageSmoothingEnabled  = false;
+
+		const settings = {
+			cellSize : 64
+		}
+		const images = {
+			overworldTiles : img("Overworld_Tileset.png"),
+			enemyTiles : img("Enemy_Tileset.png"),
+		}
+
+		class Tileset {
+			constructor(image, cellSize, animatedTiles = {}){
+				this.image = images[image];
+				this.cellSize = cellSize;
+				this.cols = this.image.width / 16;
+				this.animatedTiles = animatedTiles;
+			}
+			draw(cellId, x, y, sizeX, sizeY){
+				if(this.animatedTiles[cellId]){
+					cellId += Math.floor(room.frame / this.animatedTiles[cellId].frames) % this.animatedTiles[cellId].images;
+				}
+				ctx.drawImage(
+					this.image,
+					(cellId % this.cols) * this.cellSize,
+					Math.floor(cellId / this.cols) * this.cellSize,
+					this.cellSize,
+					this.cellSize,
+					x, y, sizeX, sizeY
+				);
+			}
+		}
+		
+		const tilesets = {}
+		
+		function img(path){
+			var image = new Image();
+			image.src = "../../../resources/images/dodo-quest/" + path;
+			return image;
+		}
+
+		var room = {
+			data : [
+				[ //Layer 1
+					[24]
+				],
+				[ //Layer 2
+					[0, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+					[18, 19, 20, 21, 22, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+				],
+				[]
+			],
+			leftBound : 0,
+			rightBound : 24 * settings.cellSize,
+			topBound : 0,
+			bottomBound : 24 * settings.cellSize,
+			frame : 0
+		}
+		
+		const Camera = {
+			x : 0,
+			y : 0,
+		}
+		
+		var Editor = {
+			lastX : 0,
+			lastY: 0,
+			selectedTile : 0,
+			z : 1,
+			width : 0,
+			height : 0,
+			menu : false,
+			scrollY : 0,
+			mode : "tiles",
+			objects : {
+				"BomberPlant" : 15,
+				"Bomb" : 11,
+			},
+			placedObjects : [],
+		}
+		
+		window.onload = function(){
+			tilesets.overworld = new Tileset("overworldTiles", 16, {
+				"234" : {images : 8, frames : 10},
+				"242" : {images : 8, frames : 10},
+			});
+			if(localStorage.getItem("room")){
+				room = JSON.parse(localStorage.getItem("room"));
+			}
+			if(localStorage.getItem("editor")){
+				Editor = JSON.parse(localStorage.getItem("editor"));
+			}
+			tilesets.enemy = new Tileset("enemyTiles", 16);
+			draw();
+		}
+		
+		function draw(){
+			ctx.clearRect(0, 0, c.width, c.height);
+			
+			ctx.lineWidth = 25;
+			ctx.strokeStyle = "lightblue";
+			ctx.strokeRect(-Camera.x, -Camera.y, settings.cellSize * Editor.width, settings.cellSize * Editor.height);
+			ctx.lineWidth = 5;
+			
+			for(var z = 0; z < room.data.length; z++){
+				for(var y = 0; y < Editor.height; y++){
+					if(y * settings.cellSize - Camera.y > 1000){ break; } //Save rendering if off screen
+					for(var x = 0; x < Editor.width; x++){
+						if(x * settings.cellSize - Camera.x > 1000){ break; } //Save rendering if off screen
+						if(room.data[z][y][x] != null){
+							tilesets.overworld.draw(room.data[z][y][x], x * settings.cellSize - Camera.x, y * settings.cellSize - Camera.y, settings.cellSize, settings.cellSize);
+						}
+						if(
+							x * settings.cellSize - Camera.x <= cic.mouseX &&
+							(x + 1) * settings.cellSize - Camera.x > cic.mouseX &&
+							y * settings.cellSize - Camera.y <= cic.mouseY &&
+							(y + 1) * settings.cellSize - Camera.y > cic.mouseY
+						){
+							if(!cic.getKey("e")){
+								if(Editor.mode == "tiles"){
+									ctx.globalAlpha = 0.5;
+									tilesets.overworld.draw(Editor.selectedTile, x * settings.cellSize - Camera.x, y * settings.cellSize - Camera.y, settings.cellSize, settings.cellSize);
+									ctx.globalAlpha = 1.0;
+								}else if(Editor.mode == "objects"){
+									ctx.globalAlpha = 0.5;
+									tilesets.enemy.draw(15, x * settings.cellSize - Camera.x, y * settings.cellSize - Camera.y, settings.cellSize, settings.cellSize);
+									ctx.globalAlpha = 1.0;
+								}
+							}
+							ctx.strokeStyle = cic.getKey("e") ? "red" : "yellow";
+							ctx.lineWidth = 5;
+							ctx.strokeRect(x * settings.cellSize - Camera.x + 2, y * settings.cellSize - Camera.y + 2, settings.cellSize - 7, settings.cellSize - 7);
+							
+							ctx.fillStyle = "white";
+							ctx.font = "15pt Consolas";
+							ctx.fillText(`(${x}, ${y})`, x * settings.cellSize - Camera.x + 35, y * settings.cellSize - Camera.y - 10);
+							
+							if(cic.getMouseButton(1)){
+								if(Editor.mode == "tiles"){
+									if(cic.getKey("e")){
+										if(room.data[Editor.z][y]){
+											room.data[Editor.z][y][x] = null;
+										}
+									}else{
+										while(room.data[Editor.z].length - 1 < y){
+											room.data[Editor.z].push([]);
+										}
+										room.data[Editor.z][y][x] = Editor.selectedTile;
+									}
+								}
+							}
+							if(cic.getMouseButtonDown(1)){
+								if(Editor.mode == "objects"){
+									Editor.placedObjects.push({"x" : x * 64, "y" : y * 64, "type" : Object.keys(Editor.objects)[Editor.selectedTile], "image" : Editor.objects[Object.keys(Editor.objects)[Editor.selectedTile]]})
+								}
+							}
+						}
+					}
+				}
+			}
+
+			for(var object of Editor.placedObjects){
+				tilesets.enemy.draw(object.image, object.x - Camera.x, object.y - Camera.y, 64, 64);
+			}
+			
+			//UI
+			for(var i = 0; i <= 2; i++){
+				if(cic.getKeyDown(i)){
+					Editor.z = i;
+				}
+			}
+			ctx.fillStyle = "#aaaaaa";
+			ctx.strokeStyle = "black";
+			ctx.fillRect(20, 20,100, 75);
+			ctx.strokeRect(20, 20,100, 75);
+			ctx.fillStyle = "black";
+			ctx.textAlign = "center";
+			ctx.font = "40pt Consolas";
+			ctx.fillText(Editor.z, 70, 75);
+			
+			ctx.fillStyle = "#f7f13b";
+			ctx.fillRect(140, 20, 100, 75);
+			ctx.strokeRect(140, 20, 100, 75);
+			ctx.fillStyle = "black";
+			ctx.fillText("F", 190, 75);
+			
+			if(cic.getKeyDown("f")){
+				Editor.menu = !Editor.menu;
+			}
+			
+			if(Editor.menu){
+				ctx.textAlign = "left";
+				ctx.fillStyle = "#aaaaaa";
+				ctx.fillRect(140, 95, 300, 600);
+				ctx.strokeRect(140, 95, 300, 600);
+				
+				ctx.font = "30pt Consolas";
+				ctx.fillStyle = "black";
+				
+				//Save
+				ctx.fillText("Save (local)", 160, 145);
+				ctx.fillRect(160, 150, 20, 5);
+				
+				if(cic.getKeyDown("s")){
+					Editor.menu = false;
+					localStorage.setItem("room", JSON.stringify(room));
+					localStorage.setItem("editor", JSON.stringify(Editor));
+				}
+				
+				//Load
+				ctx.fillText("Load (paste)", 160, 195);
+				ctx.fillRect(160, 200, 20, 5);
+				
+				if(cic.getKeyDown("l")){
+					room.data = JSON.parse(window.prompt("Paste room data:"));
+					Editor.height = room.data[1].length;
+					Editor.width = room.data[1][0].length;
+					Editor.menu = false;
+				}
+				
+				//Copy
+				ctx.fillText("Copy data", 160, 245);
+				ctx.fillRect(160, 250, 20, 5);
+				
+				if(cic.getKeyDown("c")){
+					var out = JSON.stringify(room);
+					out = out.substr(0, out.length - 1);
+					out += ", \"objects\" : [";
+					for(var obj of Editor.placedObjects){
+						out += `new Entity(${obj.x}, ${obj.y}, Entity.${obj.type}(), ${obj.image}), `
+					}
+					out += "]}"
+					console.log(out);
+					navigator.clipboard.writeText(JSON.stringify(room.data));
+					Editor.menu = false;
+				}
+				
+				//Objects
+				ctx.fillText("Objects", 160, 295);
+				ctx.fillRect(160, 300, 20, 5);
+				
+				if(cic.getKeyDown("o")){
+					Editor.mode = "objects";
+					Editor.scrollY = 0;
+					Editor.menu = false;
+				}
+				
+				ctx.fillText("Tiles", 160, 345);
+				ctx.fillRect(160, 350, 20, 5);
+				
+				if(cic.getKeyDown("t")){
+					Editor.mode = "tiles";
+					Editor.scrollY = 0;
+					Editor.menu = false;
+				}
+				
+				//Set Width
+				ctx.fillText("Set Width", 160, 395);
+				ctx.fillRect(250, 400, 20, 5);
+				
+				if(cic.getKeyDown("w")){
+					var cols = prompt("Width? (Currently " + Editor.width + ", recommended min 16)");
+					if(cols){
+						for(var z = 0; z < room.data.length; z++){
+							for(var y = 0; y < room.data[z].length; y++){
+								if(cols < room.data[z].length){
+									room.data[z][y].splice(cols, room.data[z][y].length - cols);
+								}else{
+									while(room.data[z][y].length < cols){
+										room.data[z][y].push([null,null,null,null]);
+									}
+								}
+							}
+						}
+						
+						Editor.width = cols || Editor.width;
+					}
+					cic.keys.w = false;
+					Editor.menu = false;
+				}
+				
+				//Set Height
+				ctx.fillText("Set Height", 160, 445);
+				ctx.fillRect(250, 450, 20, 5);
+				
+				if(cic.getKeyDown("h")){
+					var rows = prompt("Height? (Currently " + Editor.height + ", recommended min 16)");
+					if(rows){
+						for(var z = 0; z < room.data.length; z++){
+							if(rows < room.data[z].length){
+								room.data[z].splice(rows, room.data[z].length - rows);
+							}else{
+								while(room.data[z].length < rows){
+									room.data[z].push([]);
+								}
+							}
+						}
+						
+						Editor.height = rows || Editor.height;
+					}
+					Editor.menu = false;
+				}
+				
+				//New
+				ctx.fillText("New", 160, 495);
+				ctx.fillRect(160, 500, 20, 5);
+				
+				if(cic.getKeyDown("n")){
+					room.data = [];
+					for(var z = 0; z < 3; z++){
+						room.data.push([]);
+						for(var y = 0; y < 20; y++){
+							room.data[z].push([]);
+						}
+					}
+					Editor.height = 20;
+					Editor.width = 20;
+					Editor.menu = false;
+				}
+				
+				//Fill Background
+				ctx.fillText("Fill", 160, 545);
+				ctx.fillRect(182, 550, 20, 5);
+				
+				if(cic.getKeyDown("i")){
+					for(var y = 0; y < Editor.height; y++){
+						for(var x = 0; x < Editor.width; x++){
+							room.data[Editor.z][y][x] = Editor.selectedTile;
+						}
+					}
+					Editor.menu = false;
+				}
+				
+				//Mirror (X)
+				ctx.fillText("Mirror (x)", 160, 595);
+				ctx.fillRect(182, 600, 20, 5);
+				
+				if(cic.getKeyDown("m")){
+					var newRoomData = [[],[],[]]
+					for(var z = 0; z < room.data.length; z++){
+						for(var y = 0; y < Editor.height; y++){
+							newRoomData[z].push([]);
+							for(var x = Editor.width - 1; x >= 0; x--){
+								newRoomData[z][y].push(room.data[z][y][x]);
+							}
+						}
+					}
+					room.data = newRoomData;
+					Editor.menu = false;
+				}
+			}
+			
+			ctx.fillStyle = "#eeeeee";
+			ctx.fillRect(1020, 0, 1000, 1000);
+			ctx.fillStyle = "black";
+			ctx.fillRect(1000, 0, 20, 1000);
+			if(Editor.mode == "tiles"){
+				ctx.drawImage(images.overworldTiles, 1020, 0 - Editor.scrollY, 1000, 1000 * images.overworldTiles.height / images.overworldTiles.width);
+			}else if(Editor.mode == "objects"){
+				for(var i = 0; i < Object.keys(Editor.objects).length; i++){
+					tilesets.enemy.draw(Editor.objects[Object.keys(Editor.objects)[i]], 1020 + 64 * i, 0 - Editor.scrollY, 64, 64);
+				}
+			}
+			
+			ctx.strokeStyle = "orange";
+			var tilemapCellSize = 1000 / tilesets.overworld.cols;
+			if(cic.getKey("Shift")){
+				ctx.fillStyle = "rgba(255, 165, 0, 0.5)";
+				ctx.fillRect(
+					1020 + ((Editor.selectedTile - 1) % tilesets.overworld.cols) * tilemapCellSize,
+					Math.floor(Editor.selectedTile / tilesets.overworld.cols) * tilemapCellSize - Editor.scrollY,
+					tilemapCellSize * 3,
+					tilemapCellSize
+				);
+				ctx.fillRect(
+					1020 + (Editor.selectedTile % tilesets.overworld.cols) * tilemapCellSize,
+					(Math.floor(Editor.selectedTile / tilesets.overworld.cols) - 1) * tilemapCellSize - Editor.scrollY,
+					tilemapCellSize,
+					tilemapCellSize * 3
+				);
+			}
+			
+			ctx.strokeRect(
+				1020 + (Editor.selectedTile % tilesets.overworld.cols) * tilemapCellSize,
+				Math.floor(Editor.selectedTile / tilesets.overworld.cols) * tilemapCellSize - Editor.scrollY,
+				tilemapCellSize,
+				tilemapCellSize
+			);
+			
+			ctx.font = "20pt Consolas";
+			ctx.fillText(Editor.selectedTile, 1050 + (Editor.selectedTile % tilesets.overworld.cols) * tilemapCellSize,
+				Math.floor(Editor.selectedTile / tilesets.overworld.cols) * tilemapCellSize - Editor.scrollY);
+			
+			if(cic.getKey("Shift") && cic.getMouseButton(1) && Math.floor((Editor.lastX + Camera.x % settings.cellSize) / settings.cellSize) < Math.floor((cic.mouseX + Camera.x % settings.cellSize) / settings.cellSize)){
+				Editor.selectedTile++;
+			}
+			if(cic.getKey("Shift") && cic.getMouseButton(1) && Math.floor((Editor.lastX + Camera.x % settings.cellSize) / settings.cellSize) > Math.floor((cic.mouseX + Camera.x % settings.cellSize) / settings.cellSize)){
+				Editor.selectedTile--;
+			}
+			if(cic.getKey("Shift") && cic.getMouseButton(1) && Math.floor((Editor.lastY + Camera.y % settings.cellSize) / settings.cellSize) < Math.floor((cic.mouseY + Camera.y % settings.cellSize) / settings.cellSize)){
+				Editor.selectedTile += tilesets.overworld.cols;
+			}
+			if(cic.getKey("Shift") && cic.getMouseButton(1) && Math.floor((Editor.lastY + Camera.y % settings.cellSize) / settings.cellSize) > Math.floor((cic.mouseY + Camera.y % settings.cellSize) / settings.cellSize)){
+				Editor.selectedTile -= tilesets.overworld.cols;
+			}
+			
+			Editor.lastX = cic.mouseX;
+			Editor.lastY = cic.mouseY;
+			
+			if(cic.getMouseButtonDown(1) && cic.mouseX > 1020 && cic.mouseY < 1000 * images.overworldTiles.height / images.overworldTiles.width){
+				var x = Math.floor((cic.mouseX - 1020) / tilemapCellSize);
+				var y = Math.floor((cic.mouseY + Editor.scrollY) / tilemapCellSize);
+				Editor.selectedTile = x + y * tilesets.overworld.cols;
+			}
+			
+			if(!Editor.menu){
+				if(cic.getKey("d")){
+					Camera.x+=10;
+				}
+				if(cic.getKey("a")){
+					Camera.x-=10;
+				}
+
+				if(cic.getKey("s")){
+					Camera.y+=10;
+				}
+				if(cic.getKey("w")){
+					Camera.y-=10;
+				}
+				
+				if(cic.getKey("ArrowUp")){
+					Editor.scrollY -= 10;
+				}
+				if(cic.getKey("ArrowDown")){
+					Editor.scrollY += 10;
+				}
+			}
+			room.frame++;
+			cic.onFrameUpdate();
+			window.requestAnimationFrame(draw);
+		}
+	</script>
+</html>

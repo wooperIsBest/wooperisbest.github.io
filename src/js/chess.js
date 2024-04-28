@@ -373,12 +373,12 @@ function validateInput(mouse = false){
 	redHighlights = [];
 	orangeHighlights = [];
 	if(mouse){
-		var img = "/resources/images/chess/" + mousePieceType;
+		var img = "../resources/images/chess/" + mousePieceType;
 		pieces[to] = mousePieceType;
 		mousePieceType = null;
 		mouseFrom = null;
 	}else{
-		var img = "/resources/images/chess/" + pieces[from];
+		var img = "../resources/images/chess/" + pieces[from];
 		pieces[to] = pieces[from];
 		pieces[from] = null;
 	}
