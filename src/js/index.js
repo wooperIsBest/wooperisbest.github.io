@@ -15,7 +15,7 @@ function buildTable(){
 			
 				if(project.warning){
 					let warning = document.createElement("span");
-					warning.innerText = "⚠️";
+					warning.innerHTML = " &#9888;";
 					warning.title = "This project is " + project.warning + "!";
 					name.append(warning);
 				}
@@ -35,7 +35,11 @@ function buildTable(){
 			row.append(site);
 			
 				let link = document.createElement("a");
-				link.href = "./projects/" + project.site;
+				if(project.site.includes("https://")){
+					link.href = project.site;
+				}else{
+					link.href = "./projects/" + project.site;
+				}
 				link.innerText = project.siteType;
 				site.append(link);
 

@@ -55,3 +55,14 @@
 img {
 	vertical-align: text-top;
 }
+.img-container {
+	float:inline-end;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #b7fefb;
+	border: 1px solid grey;
+	margin: 0 0 0 50px;
+	font-style: italic;
+	text-align: center;
+}
+
