@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body::-webkit-scrollbar {
+  display: none;
+}
+</style>
+<title>HackerTyper Reimagined</title>
+</head>
+<body style="background-color:black; color:#00ff1a; font-family:consolas">
+<div id="script"></div>
+<div id="pre" style="display:none">
+φ//D-Flatφ φBankφ φHackingφ φProgramφ
+֍°import° networking °from° "https://network.github.io/scripts/main.df";
+֍°import° virusTools °from° "https://www.hackersource.net/files/virusTools/v12.5/virusTools.df";
+֍°language° JayaScript °from° "C://Program Files/JayaScript/JayaScriptCompiler.exe";
+֍
+֍°var° compiler = system.compiler.pragma;
+֍°var° router = compiler.receivePhysicalInput("LAN_");
+֍
+֍°var° client = °new° NetworkingClient();
+֍client.config({"router" : router, "VPN" : router.VPN});
+֍
+֍°const° bankIPs = [
+֍	¶"213.111.15.190",
+֍	¶"141.47.86.196",
+֍	¶"9.122.208.12",
+֍	¶"70.188.65.182",
+֍	¶"112.169.39.40"
+֍];
+֍
+֍client.onConnect = °function°(server){
+֍	¶client.throttle(server, 1); φ//throttlesφ φtheφ φBank'sφ φIPφ φsoφ φthatφ φonlyφ φoneφ φnetworkφ φcanφ φconnectφ φtoφ φitφ
+֍	¶client.sendFile(readFile("C://Program Files/BankHack.exe")).onResponse = °function°(){
+֍	¶	¶client.disconnect();
+֍	¶	¶client.scrambleVPN();
+֍	¶}
+֍}
+֍
+֍°foreach°(IP °in° bankIPs){
+֍	¶client.scrambleVPN();
+֍	¶client.connect(IP);
+֍}
+֍
+֍client.throttle = RunLang(×&lt;JayaScript&gt;×
+֍	¶φ--JayaScriptφ φAdvancedφ φNetworking:φ φThrottleφ φCommandφ
+֍	¶Network = GetActiveConnection()
+֍	¶AS Network:ConnectedServer() RUN[
+֍	¶	¶ConnectedClients():each[
+֍	¶	¶	¶THIS.SeverConnection()
+֍	¶	¶]
+֍	¶]
+֍	¶DONE
+֍×&lt;/JayaScript&gt;×);
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+֍
+</div>
+</body>
+<!--HackerTyper IDs
+֍ = Line Break (single)
+¶ = Tab (single)
+× = Opening and Closing <font color=white></font> (open + close)
+° = Opening and Closing Italic (open + close)
+φ = Comment: Italic and grey (open + close)
+-->
+<script>
+  var string = document.getElementById("pre").innerText;
+  var i = 0;
+  var closeType = "none";
+  var script = document.getElementById("script");
+  
+  document.addEventListener("keydown", function(event) {
+	if(string.charAt(i) == "֍"){
+		document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + "<br>";
+	}else if(string.charAt(i) == " "){
+		document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + " ";
+	}else if(string.charAt(i) == "¶"){
+		document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + "    ";
+	}else if(string.charAt(i) == "×"){
+		if(closeType == "none"){
+			document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + "<font color=white>";
+			closeType = "</font>";
+		}else{
+			closeType = "none";
+		}
+	}else if(string.charAt(i) == "°"){
+		if(closeType == "none"){
+			document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + '<span style="font-style:italic">';
+			closeType = "</span>";
+		}else{
+			closeType = "none";
+		}
+	}else if(string.charAt(i) == "φ"){
+		if(closeType == "none"){
+			document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + '<span style="font-style:italic"><font color=grey>';
+			closeType = "</font></span>";
+		}else{
+			closeType = "none";
+		}
+	}else{
+		if(closeType == "none"){
+			document.getElementById("script").innerHTML = document.getElementById("script").innerHTML + string.charAt(i);
+		}else{
+			document.getElementById("script").innerHTML = document.getElementById("script").innerHTML.slice(0, -closeType.length) + string.charAt(i) + closeType;
+		}
+	}
+	i++;
+	script.scrollTop = script.scrollHeight;
+});
+</script>
+</html>

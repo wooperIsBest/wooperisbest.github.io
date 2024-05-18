@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image Background Clearer | WooperIsBest.GitHub.io</title>
+		<link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="../css/index-stylesheet.css">
+		<link rel="stylesheet" href="../css/game-stylesheet.css">
+		
+		<script src="../src/js/background_remover.js" defer></script>
+	</head>
+	<body>
+		<div id="img-container" style="display:none">
+			
+		</div>
+		<!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--GAME-->
+		<div id="game-container">
+			<canvas id="game" width="1000px" height="1000px">The HTML5 Canvas is not supported in your browser.</canvas>
+			<div id="board">
+				<label for="file"><span class="button">Choose File</span></label>
+				<input id="file" style="display:none;" accept="image/*" type="file"></input><br>
+				Color to Replace <input id="color" type="color" value="#FFFFFF"></input><br>
+				Allowed Color Variation <input id="variation" type="number" value="0" min="0" max="255"></input><br>
+				<button class="button" onclick="calculate();">Submit</button><br>
+			</div>
+		</div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
+	</body>
+</html>

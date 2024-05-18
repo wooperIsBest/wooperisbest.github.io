@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+<title>JavaScript Testing</title>
+<link rel="icon" type="image/png" href="C:\Users\jthom7388\Desktop\My Things\Code\Untitled.png">
+</head>
+<body>
+<div id="header1" style="color:white; background-color:black; text-align:center; font-size:30px; border-radius:30px">Heading</div><br/>
+<span id="header1" style="color:white; background-color:black; text-align:center; font-size:30px; border-radius:30px; padding: 10px 173px 10px 172px">Heading</span>
+<span id="header1" style="color:white; background-color:black; text-align:center; font-size:30px; border-radius:30px; padding: 10px 173px 10px 173px">Heading</span>
+<span id="header1" style="color:white; background-color:black; text-align:center; font-size:30px; border-radius:30px; padding: 10px 173px 10px 173px">Heading</span>
+
+<span style="color:green"><b>Hello there!</b></span>
+<a href="https://www.youtube.com">Click for site
+<img src="../resources/images/ree.html/Untitled.png"></a>
+<br/>
+<input id="password" type="password" name="button"/>
+<input id="button" type="submit" name="button" onclick="submit();" value="Sumbit"/>
+<br/><br/>
+<span style="color:brown">Java</span><span style="color:green">Script</span>
+<br/>
+<div id="1">No Encode</div>
+<div id="2">Encode</div>
+<div id="3" onclick="run();">Encode and Decode</div>
+<div id="4"></div>
+
+<script>
+var i = 0;
+function ree(){
+var site = "https://hypixel-skyblock.fandom.com/User:WooperIsBest/Test Thing";
+alert("ree " + i);
+i++;
+document.getElementById("1").innerHTML = site;
+document.getElementById("2").innerHTML = encodeURIComponent(site);
+document.getElementById("3").innerHTML = decodeURIComponenent(encodeURIComponent(site));
+}
+
+function submit(){
+if(document.getElementById("password").value == "1234"){
+	alert("Good job!");
+	document.getElementById("3").innerHTML = "Most secretest secret? o_O";
+}else{
+	alert("Error");
+}
+}
+function run(){
+if(document.getElementById("3").innerHTML == "Most secretest secret? o_O"){	
+	document.getElementById("4").innerHTML = "<i>The secrets of the universe<br/>are located in the piano</i>";
+}
+}
+</script>
+</body>

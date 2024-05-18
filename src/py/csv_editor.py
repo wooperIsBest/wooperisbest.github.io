@@ -1,5 +1,3 @@
-#C:\Users\minej\OneDrive\Desktop\Code\Book1.csv
-
 """
 To Do:
 fix when the data is a comma

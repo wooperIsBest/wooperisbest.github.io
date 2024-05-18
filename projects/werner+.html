@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			html {
+				height: 97%;
+			}
+			body {
+				height: 100%;
+			}
+			canvas {
+				width: 100%;
+				margin: 0;
+			}
+			.image {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!--ADD IMAGES HERE-->
+			<!--Example:      <img class="image" src="YOUR_IMAGE_URL" data-word="YOUR_WORD"/>      -->
+			<img class="image" src="https://www.simplycharly.com/wp-content/uploads/2015/11/Werner-Heisenberg-2.jpg" data-word="disappointment"/>
+			<img class="image" src="https://parade.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_700/MTkwNTgwOTUyNjU2Mzg5MjQ1/albert-einstein-quotes-jpg.webp" data-word="yay"/>
+			<img class="image" src="https://ih1.redbubble.net/image.156127297.0029/poster,504x498,f8f8f8-pad,600x600,f8f8f8.u3.jpg" data-word="college"/>
+			<img class="image" src="https://i.natgeofe.com/n/3faa2b6a-f351-4995-8fff-36d145116882/domestic-dog_16x9.jpg" data-word="d o g"/>
+			<img class="image" src="../resources/images/dave-busters/Dave.png" data-word="DAVE"/>
+		<!--ADD IMAGES ABOVE-->
+		<canvas id="canvas" width="1000" height="1000"></canvas>
+		
+		<script>
+			window.onload = draw;
+			
+			const images = document.getElementsByClassName("image");
+			var pause = false;
+			
+			function draw(){
+				var ctx = document.getElementById("canvas").getContext("2d");
+				var img = images[Math.floor(Math.random() * images.length)];
+				console.log(img);
+				
+				var xPos = Math.random() * 1200 - 200;
+				var yPos = Math.random() * 1200 - 200;
+				
+				ctx.drawImage(img, xPos, yPos, 338, 200);
+				ctx.fillStyle = "#FFFFFF";
+				ctx.font = "30px Arial";
+				ctx.fillText(img.getAttribute("data-word"), xPos + 100, yPos + 162);
+				
+				if(!pause){
+					window.requestAnimationFrame(draw);
+				}
+			}
+			
+			document.addEventListener("keydown", function(e){
+				if(e.key == "Enter"){
+					if(pause){
+						pause = false;
+						draw();
+					}else{
+						pause = true;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

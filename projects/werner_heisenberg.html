@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			html {
+				height: 97%;
+			}
+			body {
+				height: 100%;
+			}
+			canvas {
+				width: 100%;
+				margin: 0;
+			}
+			img {
+				display: none;
+				filter: invert(100%);
+			}
+		</style>
+	</head>
+	<body>
+		<img id="img" src="https://www.simplycharly.com/wp-content/uploads/2015/11/Werner-Heisenberg-2.jpg"/>
+		<canvas id="canvas" width="1000" height="1000"></canvas>
+		
+		<script>
+			window.onload = draw;
+			
+			var pause = false;
+			
+			function draw(){
+				var ctx = document.getElementById("canvas").getContext("2d");
+				var img = document.getElementById("img");
+				
+				var xPos = Math.random() * 1000;
+				var yPos = Math.random() * 1000;
+				
+				ctx.drawImage(img, xPos, yPos, 338, 200);
+				ctx.fillStyle = "#FFFFFF";
+				ctx.font = "30px Arial";
+				ctx.fillText("Disappointment", xPos + 100, yPos + 162);
+				
+				if(!pause){
+					window.requestAnimationFrame(draw);
+				}
+			}
+			
+			document.addEventListener("keydown", function(e){
+				if(e.key == "Enter"){
+					if(pause){
+						pause = false;
+						draw();
+					}else{
+						pause = true;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

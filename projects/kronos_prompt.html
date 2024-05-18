@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+[contenteditable] { outline: 0px solid transparent; } /* removes outline from contenteditable */
+::selection { background: white; color: black; } ::-moz-selection { background: white; color: black; } /* text highlighting */
+::-webkit-scrollbar { display: none; } html{ -ms-overflow-style: none; scrollbar-width: none; } /* remove scrollbar */
+</style>
+</head>
+<body style="background-color:black; color:lime; font-size:12pt; tab-size:4" spellcheck="false">
+<pre id="prompt" contenteditable="false" style="padding-bottom:30%">Error: JavaScript is not enabled.<span contenteditable="true" id="new"></span></pre>
+</body>
+<script>
+const commandNames =  ["help", "ver", "about", "display", "encrypt", "chromium" ];
+const commandArgNum = [  2,      1,      1,        3,         4,          2     ];
+
+const helpMessages = [ "", "", "", //help, ver, about
+	"DISPLAY [COLOR1] [COLOR2]<br><br>Changes the color of the prompt's text and background.<br>[COLOR1] changes the color of the text, and [COLOR2] changes the background color. <br>Both are a valid color, such as DISPLAY RED BLACK or DISPLAY #555fff WHITE<br><br>", //display
+	"ENCRYPT [TYPE] [MESSAGE] [OTHER]<br>&Tab;TYPE<br>&Tab;&Tab;CAESAR syntax: ENCRYPT CAESAR [MESSAGE] [OFFSET]<br>&Tab;&Tab;See https://en.wikipedia.org/wiki/Caesar_cipher for more information.<br><br>", //encrypt
+	"CHROMIUM [MAGNITUDE]<br><br>CHROMIUM is a command that disconnects nearby routers from the internet. This should be used before large-scale hacking operations where keeping secrecy is imperative.<br>[MAGNITUDE] is a value from 1 to 9. The greater the magnitude, the more routers will be affected.<br><br>"
+	];
+
+const version = 0.1;
+
+document.getElementById("prompt").innerHTML = document.getElementById("prompt").innerHTML.replace("Error: JavaScript is not enabled.", "<b>KRONOS Prompt</b> [Version " + version + 
+	"] (c) Elusive Edict<br>Use HELP for a list of commands.<br>> ");
+
+	document.addEventListener("keydown", function(e){
+		if(e.key == "Enter"){
+			var code = document.getElementById("prompt").innerHTML.slice(document.getElementById("prompt").innerHTML.search('<span contenteditable="true" id="new">') + 38, -7).toLowerCase();
+			document.getElementById("prompt").innerHTML = document.getElementById("prompt").innerHTML.replace('<span contenteditable="true" id="new">', "")
+				.replace("</span>", '<br>' + outputResult(code) + '> <span contenteditable="true" id="new"></span>');
+			document.getElementById("prompt").innerHTML = document.getElementById("prompt").innerHTML.replace('undefined', "undefined<br>");
+		}else if(e.key == "Tab"){
+			e.preventDefault();
+		}
+	});
+	
+	function outputResult(code){
+		var args = code.split(" "); //gets all arguments from input
+		if(args[0] == "help" && args[1] == undefined){
+			return "HELP      Displays this message.<br>VER       Displays information about the prompt's version.<br>ABOUT     Displays information about the " +
+				"KRONOS prompt.<br>DISPLAY   Changes the color of prompt.<br>ENCRYPT   Encrypts a message into a specefied cipher.<br>CHROMIUM  Hacks nearby routers to prevent them from connecting to the internet.<br><br>" + 
+				"Use HELP [COMMAND] for more information on a specific command.<br><br>";
+		}
+		if(commandNames.indexOf(args[0]) == -1){ //if command is invalid
+			if(args[0] == ""){
+				return "";
+			}else{
+				return "'" + args[0] + "' is not recognized as an internal or external command,<br>operable program or batch file.<br><br>";
+			}
+		}else{
+			if(commandArgNum[commandNames.indexOf(args[0])] > args.length){
+				return "There are not enough arguments in this command.<br>Please use " + commandArgNum[commandNames.indexOf(args[0])] + " arguments.<br><br>";
+			}else if(commandArgNum[commandNames.indexOf(args[0])] < args.length){
+				return "There too many arguments in this command.<br>Please use " + commandArgNum[commandNames.indexOf(args[0])] + " arguments.<br><br>";
+			}else{
+				if(args[0] == "help"){			//HELP command
+					if(helpMessages[commandNames.indexOf(args[1])] == undefined){
+						return "'" + args[1] + "' is not recognized as an internal or external command,<br>operable program or batch file.<br><br>";
+					}else{
+						return helpMessages[commandNames.indexOf(args[1])];
+					}
+				}else if(args[0] == "ver"){		//VER command
+					return "KRONOS version " + version + "<br>(c) Elusive Edict<br><br>";
+				}else if(args[0] == "about"){
+					return "The KRONOS prompt is used for advanced computing to encrypt and decrypt ciphers, hack various clients, and output basic data.<br>";
+				}else if(args[0] == "display"){	//DISPLAY command
+					document.body.style.color = args[1];
+					document.body.style.backgroundColor = args[2];
+					return "";
+				}else if(args[0] == "encrypt"){	//ENCRYPT command
+					if(args[1] == "caesar"){		//caesar encryption
+						return encryptCaesar(args[2], args[3]) + "<br><br>";
+					}else if(args[1] == "monoalphabetic"){	//monoalphabetic encryption
+					
+					}
+				}else if(args[0] == "chromium"){//CHROMIUM command
+					if(isNaN(parseInt(args[1]))){
+						return "Argument error: argument 2 should be a number.<br><br>";
+					}else{
+						if(args[1] > 9 || args[1] < 1){
+							return "Invalid magnitude. Please choose a magnitude between 1 and 9.<br>";
+						}else{
+							window.setTimeout(function(){
+								changeTextChromium(0, args[1]);
+							}, 100);
+							return "Executing procedure CHROMIUM with magnitude " + args[1] + "...<br><br><chromium id=\"temp\">" + 
+								" ██████ ██   ██ ██████   ██████  ███    ███ ██ ██    ██ ███    ███<br>"+
+								"██      ██   ██ ██   ██ ██    ██ ████  ████ ██ ██    ██ ████  ████<br>"+
+								"██      ███████ ██████  ██    ██ ██ ████ ██ ██ ██    ██ ██ ████ ██<br>"+
+								"██      ██   ██ ██   ██ ██    ██ ██  ██  ██ ██ ██    ██ ██  ██  ██<br>"+
+								" ██████ ██   ██ ██   ██  ██████  ██      ██ ██  ██████  ██      ██<br>"+
+								"                                                                  </chromium><br>";
+						}
+					}
+				}
+			}
+		}
+		
+		function encryptCaesar(text, offset){
+			const arr = text.split("");
+			const correctedArray = arr.map(function(c){
+				return String.fromCharCode(c.charCodeAt() + +offset);
+			});
+			return correctedArray.join('');
+		}
+		
+		function changeTextChromium(i, arg){
+			document.getElementById("new").contentEditable = false;
+			var newText =
+				" ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗██╗██╗   ██╗███╗   ███╗<"+
+				"██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██║██║   ██║████╗ ████║<"+
+				"██║     ███████║██████╔╝██║   ██║██╔████╔██║██║██║   ██║██╔████╔██║<"+
+				"██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██║██║   ██║██║╚██╔╝██║<"+
+				"╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║██║╚██████╔╝██║ ╚═╝ ██║<"+
+				" ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝ ╚═════╝ ╚═╝     ╚═╝<";
+			if(newText.charAt(i) == "<"){
+				document.getElementById("temp").innerHTML = document.getElementById("temp").innerText.slice(0, i) + "<br>" + document.getElementById("temp").innerText.slice(i+1);
+			}else{
+				document.getElementById("temp").innerText = document.getElementById("temp").innerText.slice(0, i) + newText.charAt(i) + document.getElementById("temp").innerText.slice(i+1);
+			}
+			
+			if(i >= document.getElementById("temp").innerText.length){
+				document.getElementById("temp").innerHTML = document.getElementById("temp").innerHTML + "CHROMIUM complete!<br>Result: " + Math.round(Math.pow(316, arg / 5) * random(1.1, 1.3)) +
+					" routers affected.<br>";
+				document.getElementById("temp").removeAttribute('id');
+				document.getElementById("new").contentEditable = true;
+			}else{
+				window.setTimeout(function(){
+					changeTextChromium(i + 1, arg);
+				}, 10 * arg);
+			}
+		}
+	}
+	
+	function random(min, max) {
+		return Math.floor(Math.random() * (max - min) ) + min;
+	}
+</script>
+</html>

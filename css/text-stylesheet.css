@@ -2,11 +2,9 @@
     border: 1px solid black;
     border-radius: 15px;
     background-color: white;
-    margin: 20px 5% 20px;
+    margin: 0 5%;
     padding: 30px;
-}
-.content a {
-    color: black;
+	display: inline-block;
 }
 .spacer {
     margin: 80px;
