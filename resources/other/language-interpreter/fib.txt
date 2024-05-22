@@ -1,0 +1,13 @@
+PRINT "A's ", "value"
+INPUT A
+PRINT "B's ", "value"
+INPUT B
+PRINT "Max ", "value"
+INPUT C
+
+PRINT A
+PRINT B
+LET A = A + B
+LET B = A + B
+
+IF A < C THEN GOTO 7

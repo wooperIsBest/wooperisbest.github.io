@@ -1,0 +1,6 @@
+LET X = 1
+PRINT X
+LET X = X + 1
+
+IF X < 10 THEN GOTO 1
+PRINT "DONE!"

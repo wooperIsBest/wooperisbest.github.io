@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tiny BASIC Interpreter | WooperIsBest.GitHub.io</title>
+		
+        <link rel="stylesheet" href="../css/index-stylesheet.css">
+		<link rel="stylesheet" href="../css/text-stylesheet.css">
+	</head>
+	<body>
+		<!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--TEXT-->
+		<div class="spacer"></div>
+		<div class="content" style="display:inline-block">
+			<span class="header">Tiny BASIC Interpreter</span><br>
+			<hr>
+			<div class="img-container">
+				<img src="../resources/images/language-interpreter/Sample Output.png"/><br>
+				Sample inputs and outputs for<br>the language interpreter.
+			</div>
+			This was my third attempt, in a row, at making a programming language (with the first two, I had no idea what I was doing). It uses a simple grammar based mostly
+			on the original <a href="https://en.wikipedia.org/wiki/Tiny_BASIC">Tiny BASIC</a>, with some slightly different functions. Its capabilties include:<br>
+			<ul>
+				<li>A basic I/O shell, where each command is run as the user inputs it</li>
+				<li>Program memory, stored when the user types a line number before the command</li>
+				<li>The ability to write to program memory from a file</li>
+				<li>Several basic commands, including variables, <code>INPUT</code>, <code>IF</code> statements, and <code>GOTO</code> numbers</li>
+				<li>A rudimentary error message system</li>
+			</ul>
+			The process of developing this project taught me a lot about how programming languages take what the user inputs and converts it into runnable instructions. While this is
+			an interpreted language, I believe I understand how these concepts can be applied to compilation.<br><br>
+			Something I wish I had done differently is choosing a different language; while I enjoy programming in C, I found myself worrying about memory almost as much
+			as the program's actual functionality.<br><br>
+			The program takes BASIC-like code as an input and goes through three main steps to interpret their meaning:
+			<ol>
+				<li><b>Lexical Analysis</b>, otherwise known as tokenizing, converts the text into a series of useable types of data, including numbers, operators, and keywords.</li>
+				<li><b>Parsing</b> takes these tokens and organizes them into a structured parse tree, which consists of larger nodes like expressions that then consist of subnodes
+				such as numbers and operators.</li>
+				<li>Finally, the <b>Interpreter</b> takes these "trees" and runs certain instructions with the given values.
+			</ol>
+			I would love to revisit this project in the future and add several features. First, I would like to give it some more advanced functionality, and a more complete
+			syntax. Additionally, I would like to add better error messages. I would also like to attempt making a compiled language.<br><br>
+			
+			Source code for an example program, which lists a Fibonacci-like sequence numbers starting with A, B, A+B, ..., which can be run in the interpreter, is given below.
+			
+			<br><br>
+			<code>
+			PRINT "A's ", "value"<br>
+			INPUT A<br>
+			PRINT "B's ", "value"<br>
+			INPUT B<br>
+			PRINT "Max ", "value"<br>
+			INPUT C<br>
+			<br>
+			PRINT A<br>
+			PRINT B<br>
+			LET A = A + B<br>
+			LET B = A + B<br>
+			<br>
+			IF A < C THEN GOTO 7
+			</code>
+		</div>
+		<div class="spacer"></div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
+		
+	</body>
+</html>
