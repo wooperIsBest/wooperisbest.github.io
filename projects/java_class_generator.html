@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Java Class Template Generator | WooperIsBest.GitHub.io</title>
+		
+        <link rel="stylesheet" href="../css/index-stylesheet.css">
+		<link rel="stylesheet" href="../css/text-stylesheet.css">
+		
+		<script src="../src/js/java_class_generator.js" defer></script>
+	</head>
+	<body>
+		<!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--TEXT-->
+		<div class="spacer"></div>
+		<div class="content" style="display:inline-block">
+			<span class="header">Java Class Template Generator</span>
+			<hr>
+			The <b>Java Class Template Generator</b> is a simple tool to slightly speed up the very repetitive process of creating classes in Java. Simply input
+			the class attributes, then the constructor and default get and set methods will be generated.<br><br>
+			
+			Obviously, this does not fulfill the needs of every class, but is a good starting point when given many basic fields are required.<br><br>
+			
+			Use Spaces <input id="input-useSpaces" class="input" type="checkbox"></input><br>
+			Class Name <input id="input-className" class="input"></input><br>
+			Class Attributes<br>
+			<table style="background-color: #59c2e1;">
+				<tbody id="input-attributes" class="input">
+					<tr>
+						<td colspan="5" style="text-align:center">
+							<button onclick="addRow();">+</button>
+						</td>
+					</tr>
+				</tbody>
+			</table><br>
+			<button onclick="navigator.clipboard.writeText(outputElement.innerText);">Copy to Clipboard</button><br><br>
+			<code id="output" style="white-space: pre; tab-size: 4"></code>
+		</div>
+		<div class="spacer"></div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
+	</body>
+</html>
