@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Advent of Code 2024 | WooperIsBest.GitHub.io</title>
+		
+        <link rel="stylesheet" href="../css/index-stylesheet.css">
+		<link rel="stylesheet" href="../css/text-stylesheet.css">
+	</head>
+	<body>
+		<!--BANNER-->
+		<div id="banner">
+			<a id="site-logo" href="/">WooperIsBest.GitHub.io</a>
+		</div>
+		<!--TEXT-->
+		<div class="spacer"></div>
+		<div class="content">
+			<span class="header">Advent of Code 2024</span>
+			<hr>
+			<div class="img-container">
+				<img width="300px" src="../resources/images/advent-of-code-2024/Progress.png"/><br>
+				My progress on the Advent of Code challenge.<br>
+			</div>
+			
+			This year, I decided to participate in the <b><a href="https://adventofcode.com/2024">Advent of Code</a></b> challenge in Python. While I was unable to figure
+			out every challenge, particularly the later, more difficult ones, I did learn a few key things while working on solutions.<br>
+			<ul>
+				<li>First, I gained an understanding of <a href="https://en.wikipedia.org/wiki/Bit_array">bit arrays</a>, and used them as a compact method of storing
+				sets of boolean data (see my implementation, <a href="../src/py/advent-of-code-2024/bitboard.py">bitboard.py</a>).</li>
+				<li>Additionally, I made an implementation of the <a href="https://www.geeksforgeeks.org/graph-data-structure/">graph data structure</a> to assist in
+				solving the challenges, including an implementation of the depth-first search algorithm. On the backend, my implmentation uses the bit array I created
+				to efficiently store edge relations, both directed and undirected (see <a href="../src/py/advent-of-code-2024/graph.py">graph.py</a>).</li>
+				<li>Finally, I created a <a href="../src/py/advent-of-code-2024/grid.py">grid</a> implementation to work with more familiar x and y coordinates in a
+				definite space.</li>
+			</ul>
+			Using these tools, I was able to solve some of the challenges. This helped me keep my problem-solving brain engaged in relatively small projects, ideal for
+			this time where I was busy with schooling and extracurriculars.
+		</div>
+		<div class="spacer"></div>
+		<!--FOOTER-->
+		<div id="cc-container">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0; text-decoration: none" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+            </a><br>
+            All content on this page unless otherwise noted is released under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> license, meaning as long as you attribute
+            this site with a proper link and re-distribute it under the same license, you are free to use this content in any way.
+		</div>
+		<br>
+		
+	</body>
+</html>
